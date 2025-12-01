@@ -1,7 +1,8 @@
-package dev.inteleonyx.armandillo.lang.modules.recipes.functions;
+package dev.inteleonyx.armandillo.recipes.functions;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
 import dev.inteleonyx.armandillo.api.luaj.lib.OneArgFunction;
+import dev.inteleonyx.armandillo.recipes.RecipesArmandilloModule;
 
 /**
  * @author Inteleonyx. Created on 26/11/2025
@@ -9,15 +10,14 @@ import dev.inteleonyx.armandillo.api.luaj.lib.OneArgFunction;
  */
 
 public class RecipeRemoveFunction extends OneArgFunction {
-    private final dev.inteleonyx.armandillo.lang.modules.recipes.RecipeModule module;
+    private final RecipesArmandilloModule module;
 
-    public RecipeRemoveFunction(dev.inteleonyx.armandillo.lang.modules.recipes.RecipeModule module) {
+    public RecipeRemoveFunction(RecipesArmandilloModule module) {
         this.module = module;
     }
 
     @Override
-    public LuaValue call(LuaValue arg) {
-
+    public LuaValue call(LuaValue var1) {
         return LuaValue.NIL;
     }
 }

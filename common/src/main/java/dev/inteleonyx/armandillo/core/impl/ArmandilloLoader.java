@@ -4,7 +4,7 @@ import dev.inteleonyx.armandillo.ArmandilloMod;
 import dev.inteleonyx.armandillo.lang.functions.ArmandilloLoadClass;
 import dev.inteleonyx.armandillo.lang.functions.ArmandilloModuleFunction;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
-import dev.inteleonyx.armandillo.lang.modules.recipes.RecipeModule;
+import dev.inteleonyx.armandillo.recipes.RecipesArmandilloModule;
 import dev.inteleonyx.armandillo.core.registry.ModuleRegistry;
 import dev.inteleonyx.armandillo.luaj.ILuaEnvironment;
 import dev.inteleonyx.armandillo.env.impl.LuaJEnvironment;
@@ -31,7 +31,7 @@ public class ArmandilloLoader implements IArmandilloLoader {
     @Override
     public void initialize() {
         ModuleRegistry registry = ModuleRegistry.getInstance();
-        registry.register(new RecipeModule());
+        registry.register(new RecipesArmandilloModule());
         LuaValue armandilloGlobal = LuaValue.tableOf();
         armandilloGlobal.set("module", new ArmandilloModuleFunction());
         armandilloGlobal.set("load_class", new ArmandilloLoadClass());

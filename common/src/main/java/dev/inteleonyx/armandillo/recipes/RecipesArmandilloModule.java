@@ -1,19 +1,19 @@
-package dev.inteleonyx.armandillo.lang.modules.recipes;
+package dev.inteleonyx.armandillo.recipes;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaTable;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
 import dev.inteleonyx.armandillo.api.IArmandilloModule;
-import dev.inteleonyx.armandillo.lang.modules.recipes.functions.RecipeRemoveFunction;
+import dev.inteleonyx.armandillo.recipes.functions.RecipeRemoveFunction;
 
 /**
  * @author Inteleonyx. Created on 26/11/2025
  * @project armandillo
  */
 
-public class RecipeModule implements IArmandilloModule {
+public class RecipesArmandilloModule implements IArmandilloModule {
     private final LuaTable engine;
 
-    public RecipeModule() {
+    public RecipesArmandilloModule() {
         // Criamos a tabela 'engine' e populamos com as funções
         this.engine = new LuaTable();
 
