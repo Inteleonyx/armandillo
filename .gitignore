@@ -1,14 +1,14 @@
-.gradle
-build
+.gradle/
+build/
 
-common/.gradle
-common/run
-common/build
+common/.gradle/
+common/run/
+common/build/
 
-fabric/.gradle
-fabric/build
-fabric/run
+fabric/.gradle/
+fabric/build/
+fabric/run/
 
-neoforge/.gradle
-neoforge/run
-neoforge/build
+neoforge/.gradle/
+neoforge/run/
+neoforge/build/
