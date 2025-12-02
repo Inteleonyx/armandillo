@@ -1,4 +1,4 @@
-package dev.inteleonyx.armandillo.env.impl;
+package dev.inteleonyx.armandillo.environment.impl;
 
 import dev.inteleonyx.armandillo.api.luaj.Globals;
 import dev.inteleonyx.armandillo.api.luaj.LuaError;

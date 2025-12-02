@@ -1,13 +1,14 @@
 package dev.inteleonyx.armandillo.core.impl;
 
 import dev.inteleonyx.armandillo.ArmandilloMod;
-import dev.inteleonyx.armandillo.lang.functions.ArmandilloLoadClass;
-import dev.inteleonyx.armandillo.lang.functions.ArmandilloModuleFunction;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
-import dev.inteleonyx.armandillo.recipes.RecipesArmandilloModule;
+import dev.inteleonyx.armandillo.core.lang.functions.ArmandilloEventFunction;
+import dev.inteleonyx.armandillo.core.lang.functions.ArmandilloLoadClassFunction;
+import dev.inteleonyx.armandillo.core.lang.functions.ArmandilloModuleFunction;
+import dev.inteleonyx.armandillo.core.registry.EventRegistry;
 import dev.inteleonyx.armandillo.core.registry.ModuleRegistry;
 import dev.inteleonyx.armandillo.luaj.ILuaEnvironment;
-import dev.inteleonyx.armandillo.env.impl.LuaJEnvironment;
+import dev.inteleonyx.armandillo.environment.impl.LuaJEnvironment;
 import dev.inteleonyx.armandillo.core.IArmandilloLoader;
 import dev.inteleonyx.armandillo.utils.ScriptFinder;
 
@@ -30,13 +31,13 @@ public class ArmandilloLoader implements IArmandilloLoader {
 
     @Override
     public void initialize() {
-        ModuleRegistry registry = ModuleRegistry.getInstance();
-        registry.register(new RecipesArmandilloModule());
         LuaValue armandilloGlobal = LuaValue.tableOf();
         armandilloGlobal.set("module", new ArmandilloModuleFunction());
-        armandilloGlobal.set("load_class", new ArmandilloLoadClass());
+        armandilloGlobal.set("load_class", new ArmandilloLoadClassFunction());
+        armandilloGlobal.set("event", new ArmandilloEventFunction());
 
-        luaEnvironment.registerGlobal("Armandillo",  armandilloGlobal);
+        EventRegistry.getInstance().register(getEnvironment().getGlobals());
+        ModuleRegistry.getInstance().register(getEnvironment().getGlobals());
 
         List<String> scriptPaths = ScriptFinder.find(ArmandilloMod.ARMANDILLO_ROOT_PATH);
 

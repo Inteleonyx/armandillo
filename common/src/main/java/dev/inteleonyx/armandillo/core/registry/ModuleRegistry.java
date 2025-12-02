@@ -1,8 +1,10 @@
 package dev.inteleonyx.armandillo.core.registry;
 
-import dev.inteleonyx.armandillo.api.IArmandilloModule;
+import dev.inteleonyx.armandillo.api.luaj.Globals;
+import dev.inteleonyx.armandillo.core.event.ArmandilloModule;
+import dev.inteleonyx.armandillo.core.lang.functions.ArmandilloModuleFunction;
+import dev.inteleonyx.armandillo.registry.ArmandilloRegistries;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,7 +15,7 @@ import java.util.Optional;
 
 public class ModuleRegistry {
     private static final ModuleRegistry INSTANCE = new ModuleRegistry();
-    private final Map<String, IArmandilloModule> modules = new HashMap<>();
+    Map<String, ArmandilloModule> modules = ArmandilloRegistries.MODULES.getAll();
 
     private ModuleRegistry() {}
 
@@ -21,15 +23,18 @@ public class ModuleRegistry {
         return INSTANCE;
     }
 
-    public void register(IArmandilloModule module) {
-        if (modules.containsKey(module.getModuleId())) {
-            throw new IllegalStateException("Duplicated module: " + module.getModuleId());
+    public void register(Globals globals) {
+        for (Map.Entry<String, ArmandilloModule> entry : modules.entrySet()) {
+            String moduleName = entry.getKey();
+            ArmandilloModule module = entry.getValue();
+
+            ArmandilloModuleFunction function = new ArmandilloModuleFunction();
+
+            globals.set(moduleName, function);
         }
-        modules.put(module.getModuleId(), module);
-        System.out.println("[Armandillo] Registered module: " + module.getModuleId());
     }
 
-    public Optional<IArmandilloModule> getModule(String id) {
-        return Optional.ofNullable(modules.get(id));
+    public Optional<ArmandilloModule> getModule(String moduleName) {
+        return Optional.ofNullable(modules.get(moduleName));
     }
 }

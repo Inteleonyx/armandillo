@@ -1,4 +1,4 @@
-package dev.inteleonyx.armandillo.lang.functions;
+package dev.inteleonyx.armandillo.core.lang.functions;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaError;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
@@ -10,8 +10,7 @@ import dev.inteleonyx.armandillo.api.luaj.lib.jse.CoerceJavaToLua;
  * @project armandillo
  */
 
-public class ArmandilloLoadClass extends OneArgFunction {
-
+public class ArmandilloLoadClassFunction extends OneArgFunction {
     @Override
     public LuaValue call(LuaValue arg) {
         if (!arg.isstring()) {

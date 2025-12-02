@@ -1,4 +1,4 @@
-package dev.inteleonyx.armandillo.lang.functions;
+package dev.inteleonyx.armandillo.core.lang.functions;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaFunction;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;

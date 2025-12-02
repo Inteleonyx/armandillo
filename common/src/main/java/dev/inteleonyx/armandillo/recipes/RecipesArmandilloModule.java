@@ -2,7 +2,7 @@ package dev.inteleonyx.armandillo.recipes;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaTable;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
-import dev.inteleonyx.armandillo.api.IArmandilloModule;
+import dev.inteleonyx.armandillo.registry.ArmandilloModule;
 import dev.inteleonyx.armandillo.recipes.functions.RecipeRemoveFunction;
 
 /**
@@ -10,7 +10,7 @@ import dev.inteleonyx.armandillo.recipes.functions.RecipeRemoveFunction;
  * @project armandillo
  */
 
-public class RecipesArmandilloModule implements IArmandilloModule {
+public class RecipesArmandilloModule implements ArmandilloModule {
     private final LuaTable engine;
 
     public RecipesArmandilloModule() {

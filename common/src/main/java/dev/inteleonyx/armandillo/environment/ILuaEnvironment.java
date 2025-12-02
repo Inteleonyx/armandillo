@@ -1,5 +1,6 @@
 package dev.inteleonyx.armandillo.luaj;
 
+import dev.inteleonyx.armandillo.api.luaj.Globals;
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
 
 /**
@@ -12,4 +13,6 @@ public interface ILuaEnvironment {
     void callFunction(String name, Object... args);
 
     void runScript(String luaScript);
+
+    Globals getGlobals();
 }
