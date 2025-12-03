@@ -12,7 +12,6 @@ public class FolderSetup {
     private static final String ASSETS_FOLDER = "assets";
 
     public static Path setupFolders(Path baseDir) {
-        // ✅ Se baseDir for null, aborta antes de tudo
         if (baseDir == null) {
             System.err.println("[Armandillo] ❌ Game directory (baseDir) is NULL! Cannot create folders.");
             return null;
@@ -28,7 +27,6 @@ public class FolderSetup {
         try {
             System.out.println("[Armandillo] Checking folder validity at: " + root.toAbsolutePath());
 
-            // ✅ Só cria se não existir
             if (!Files.exists(root)) {
                 Files.createDirectories(root);
                 System.out.println("[Armandillo] 📁 Root folder created.");
@@ -54,7 +52,6 @@ public class FolderSetup {
                 System.out.println("[Armandillo] 🎨 Assets folder created.");
             }
 
-            // ✅ No final retorna o root já garantido
             System.out.println("[Armandillo] ✅ Folder structure verified/OK.");
             return root;
 
