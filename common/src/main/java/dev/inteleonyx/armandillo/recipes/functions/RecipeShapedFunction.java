@@ -23,14 +23,13 @@ import java.util.Map;
 public class RecipeShapedFunction extends VarArgFunction {
     @Override
     public Varargs invoke(Varargs args) {
-
-        LuaTable recipeTable = args.checktable(1);
-        LuaValue resultValue = recipeTable.get(1);
+        LuaTable table = args.checktable(1);
+        LuaValue resultValue = table.get(1);
         String resultId = resultValue.checkjstring();
         ItemEntry entry = ItemEntry.parseItemAmount(resultId);
         String resultString = entry.itemId;
 
-        LuaValue patternValue = recipeTable.get(2);
+        LuaValue patternValue = table.get(2);
         if (patternValue.isnil()) {
             throw new IllegalArgumentException("Recipe Shaped: Pattern Table (second argument) is missing or nil.");
         }
@@ -46,7 +45,7 @@ public class RecipeShapedFunction extends VarArgFunction {
             }
         }
 
-        LuaValue keysValue = recipeTable.get(3);
+        LuaValue keysValue = table.get(3);
         if (keysValue.isnil()) {
             throw new IllegalArgumentException("Recipe Shaped: Keys table (third argument) is missing or nil.");
         }

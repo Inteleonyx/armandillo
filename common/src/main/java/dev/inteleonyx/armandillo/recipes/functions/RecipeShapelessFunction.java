@@ -25,12 +25,10 @@ public class RecipeShapelessFunction extends VarArgFunction {
     public Varargs invoke(Varargs args) {
         LuaTable table = args.checktable(1);
 
-        // Resultado do craft (index 1)
         String resultId = table.get(1).checkjstring();
         ItemEntry entry = ItemEntry.parseItemAmount(resultId);
         String resultString = entry.itemId;
 
-        // Ingredientes (index 2, deve ser um ARRAY/TABLE)
         LuaValue ingredientArrayValue = table.get(2);
         if (ingredientArrayValue.isnil()) {
             throw new IllegalArgumentException("Shapeless: ingredient table missing");
@@ -54,7 +52,6 @@ public class RecipeShapelessFunction extends VarArgFunction {
             }
         }
 
-        // Builda a receita no jogo
         RecipeBuilder.ShapelessRecipeBuilder builder = new RecipeBuilder.ShapelessRecipeBuilder(resultId);
         for (String ing : ingredients) {
             builder.ingredient(ing);

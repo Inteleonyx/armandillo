@@ -2,9 +2,7 @@ package dev.inteleonyx.armandillo.recipes;
 
 import dev.inteleonyx.armandillo.api.luaj.LuaValue;
 import dev.inteleonyx.armandillo.core.objects.ArmandilloModule;
-import dev.inteleonyx.armandillo.recipes.functions.RecipeRemoveFunction;
-import dev.inteleonyx.armandillo.recipes.functions.RecipeShapedFunction;
-import dev.inteleonyx.armandillo.recipes.functions.RecipeShapelessFunction;
+import dev.inteleonyx.armandillo.recipes.functions.*;
 
 /**
  * @author Inteleonyx. Created on 26/11/2025
@@ -28,5 +26,12 @@ public class RecipesArmandilloModule extends ArmandilloModule {
         engine.set("shaped", new RecipeShapedFunction());
         engine.set("shapeless", new RecipeShapelessFunction());
         engine.set("remove", new RecipeRemoveFunction());
+        engine.set("smelting", new RecipeSmeltingFunction());
+        engine.set("smoking", new RecipeSmokingFunction());
+        engine.set("campfire", new RecipeCampfireFunction());
+        engine.set("blasting", new  RecipeBlastingFunction());
+        engine.set("smithing", new RecipeSmithingFunction());
+        engine.set("stonecutting", new RecipeStonecuttingFunction());
+        engine.set("custom", new RecipeCustomFunction());
     }
 }

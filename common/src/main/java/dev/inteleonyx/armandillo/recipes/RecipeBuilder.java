@@ -41,6 +41,10 @@ public class RecipeBuilder {
         return new ShapelessRecipeBuilder(result);
     }
 
+    public static SmeltingRecipeBuilder smelting(String result) {
+        return new SmeltingRecipeBuilder("minecraft:smelting", result);
+    }
+
     public static SmeltingRecipeBuilder blasting(String result) {
         return new SmeltingRecipeBuilder("minecraft:blasting", result);
     }
