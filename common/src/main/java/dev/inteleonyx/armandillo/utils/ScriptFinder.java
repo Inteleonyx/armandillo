@@ -18,14 +18,14 @@ public class ScriptFinder {
 
     public static List<String> find(Path armandilloRootPath) {
         if (armandilloRootPath == null) {
-            System.err.println("[Armandillo] ❌ Cannot find scripts because root path is NULL!");
+            System.err.println("[Armandillo] Cannot find scripts because root path is NULL!");
             return List.of();
         }
 
         Path scriptsDir = armandilloRootPath.resolve("scripts");
 
         if (!Files.isDirectory(scriptsDir)) {
-            System.err.println("[Armandillo] ❌ Scripts folder missing at: " + scriptsDir);
+            System.err.println("[Armandillo] Scripts folder missing at: " + scriptsDir);
             return List.of();
         }
 

@@ -7,7 +7,8 @@
   "client": [
   ],
   "mixins": [
-    "RecipeManagerMixin"
+    "RecipeManagerMixin",
+    "TagLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -24,7 +24,5 @@ public class RecipeManagerMixin {
     @Inject(method = "apply", at = @At("HEAD"))
     protected void armandillo$injectRuntimeRecipes(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler, CallbackInfo ci) {
         RecipeProcessor.processRecipes(map);
-
-        RuntimeDataRegistry.clearRecipeCache();
     }
 }

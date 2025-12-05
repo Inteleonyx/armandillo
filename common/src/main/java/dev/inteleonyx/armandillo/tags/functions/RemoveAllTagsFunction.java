@@ -15,8 +15,9 @@ public class RemoveAllTagsFunction extends OneArgFunction {
     public LuaValue call(LuaValue var1) {
         LuaTable tableArg = var1.checktable();
         String tagId = tableArg.get(1).checkjstring();
+        String folder = tableArg.get(2).checkjstring();
 
-        String criteria = String.format("TAG_CLEAR_ENTRIES:%s", tagId);
+        String criteria = String.format("TAG_CLEAR_ENTRIES:%s/%s", folder, tagId);
         RuntimeDataRegistry.addTagRemovalCriteria(criteria);
 
         return LuaValue.NIL;

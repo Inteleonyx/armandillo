@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,7 +19,7 @@ public class RuntimeDataRegistry {
     private static final List<String> RECIPE_REMOVAL_CRITERIA = new ArrayList<>();
 
     private static final Map<ResourceLocation, JsonObject> TAG_DATA = new ConcurrentHashMap<>();
-    private static final List<String> TAG_REMOVAL_CRITERIA = new ArrayList<>();
+    private static final List<String> TAG_REMOVAL_CRITERIA = Collections.synchronizedList(new ArrayList<>());
 
     public static void clearRecipeCache() {
         RECIPE_DATA.clear();

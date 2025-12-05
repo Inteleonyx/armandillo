@@ -8,6 +8,8 @@ import dev.inteleonyx.armandillo.commands.ArmandilloCommand;
 import dev.inteleonyx.armandillo.core.impl.ArmandilloLoader;
 import dev.inteleonyx.armandillo.utils.FolderSetup;
 import lombok.Getter;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 
 import java.nio.file.Path;
 
@@ -35,14 +37,14 @@ public final class ArmandilloMod {
 
         Path baseDir = Platform.getGameFolder();
         if (baseDir == null) {
-            System.err.println("[Armandillo] ❌ Platform.getGameFolder() returned NULL!");
+            System.err.println("[Armandillo] Platform.getGameFolder() returned NULL!");
             return;
         }
 
         ARMANDILLO_ROOT_PATH = FolderSetup.setupFolders(baseDir);
 
         if (ARMANDILLO_ROOT_PATH == null) {
-            System.err.println("[Armandillo] ❌ Failed to setup root folder.");
+            System.err.println("[Armandillo] Failed to setup root folder.");
             return;
         }
 
@@ -51,6 +53,6 @@ public final class ArmandilloMod {
         });
 
         this.loader.initialize();
-        System.out.println("[Armandillo] ✅ Mod initialized successfully!");
+        System.out.println("[Armandillo] Mod initialized successfully!");
     }
 }

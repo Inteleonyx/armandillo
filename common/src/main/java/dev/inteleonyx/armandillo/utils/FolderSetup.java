@@ -13,7 +13,7 @@ public class FolderSetup {
 
     public static Path setupFolders(Path baseDir) {
         if (baseDir == null) {
-            System.err.println("[Armandillo] ❌ Game directory (baseDir) is NULL! Cannot create folders.");
+            System.err.println("[Armandillo] Game directory (baseDir) is NULL! Cannot create folders.");
             return null;
         }
 
@@ -52,11 +52,11 @@ public class FolderSetup {
                 //System.out.println("[Armandillo] 🎨 Assets folder created.");
             //}
 
-            System.out.println("[Armandillo] ✅ Folder structure verified/OK.");
+            System.out.println("[Armandillo] Folder structure verified/OK.");
             return root;
 
         } catch (IOException e) {
-            System.err.println("[Armandillo] 💥 Failed to create directories!");
+            System.err.println("[Armandillo] Failed to create directories!");
             e.printStackTrace();
             return null;
         }

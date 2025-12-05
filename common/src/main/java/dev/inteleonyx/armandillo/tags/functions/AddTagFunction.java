@@ -16,9 +16,10 @@ public class AddTagFunction extends VarArgFunction {
     public LuaValue call(LuaValue arg) {
         LuaTable args = arg.checktable();
         String tagId = args.get(1).checkjstring();
-        String itemId = args.get(2).checkjstring();
+        String registry = args.get(2).checkjstring();
+        String itemId = args.get(3).checkjstring();
 
-        addEntryToTag(tagId, itemId);
+        addEntryToTag(tagId, registry, itemId);
         return LuaValue.NIL;
     }
 }

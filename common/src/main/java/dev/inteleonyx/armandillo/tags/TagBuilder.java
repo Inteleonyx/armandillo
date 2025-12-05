@@ -1,11 +1,8 @@
 package dev.inteleonyx.armandillo.tags;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import dev.inteleonyx.armandillo.core.registry.RuntimeDataRegistry;
 import net.minecraft.resources.ResourceLocation;
-
-import java.util.Map;
 
 /**
  * @author Inteleonyx. Created on 03/12/2025
@@ -13,39 +10,49 @@ import java.util.Map;
  */
 
 public class TagBuilder {
-    private static JsonObject getOrCreateTagJson(ResourceLocation tagId) {
-        Map<ResourceLocation, JsonObject> tagData = RuntimeDataRegistry.getAllTagData();
-        JsonObject tagJson = tagData.getOrDefault(tagId, new JsonObject());
-
-        if (!tagJson.has("replace")) {
-            tagJson.addProperty("replace", false);
-        }
-
-        if (!tagJson.has("values")) {
-            tagJson.add("values", new JsonArray());
-        }
-
-        tagData.put(tagId, tagJson);
-
-        return tagJson;
+    private static ResourceLocation getRegistryKey(String folder, ResourceLocation tag) {
+        return ResourceLocation.fromNamespaceAndPath(tag.getNamespace(), folder + "/" + tag.getPath());
     }
 
-    public static void addEntryToTag(String tagIdString, String entryIdString) {
+    private static JsonObject getOrCreateTagJson(ResourceLocation registryKey) {
+        JsonObject j = RuntimeDataRegistry.getAllTagData().getOrDefault(registryKey, null);
+
+        if (j == null) {
+            j = new JsonObject();
+            j.add("values", new JsonArray());
+            RuntimeDataRegistry.addTagData(registryKey, j);
+        }
+
+        if (!j.has("values")) {
+            j.add("values", new JsonArray());
+        }
+
+        return j;
+    }
+
+    public static void addEntryToTag(String tagStr, String folder, String entryStr) {
         try {
-            ResourceLocation tagId = ResourceLocation.parse(tagIdString);
-            ResourceLocation entryId = ResourceLocation.parse(entryIdString);
+            ResourceLocation tag = ResourceLocation.parse(tagStr);
+            if (entryStr == null || entryStr.isEmpty()) return;
 
-            JsonObject tagJson = getOrCreateTagJson(tagId);
-            JsonArray values = tagJson.getAsJsonArray("values");
+            ResourceLocation registryKey = getRegistryKey(folder, tag);
 
-            boolean exists = values.asList().stream()
-                    .anyMatch(e -> e.getAsString().equals(entryId.toString()));
+            JsonObject runtimeJson = getOrCreateTagJson(registryKey);
+            JsonArray runtimeValues = runtimeJson.getAsJsonArray("values");
+
+
+            boolean exists = runtimeValues.asList().stream()
+                    .map(JsonElement::getAsString)
+                    .anyMatch(s -> s.equals(entryStr));
 
             if (!exists) {
-                values.add(entryId.toString());
+                runtimeValues.add(entryStr);
             }
+
+            RuntimeDataRegistry.addTagData(registryKey, runtimeJson);
+
         } catch (Exception e) {
-            throw new IllegalArgumentException("Entry ID invalid: " + entryIdString, e);
+            e.printStackTrace();
         }
     }
 }

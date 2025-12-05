@@ -15,10 +15,12 @@ public class RemoveTagFunction extends TwoArgFunction {
     @Override
     public LuaValue call(LuaValue var1, LuaValue var2) {
         LuaTable table =  var1.checktable();
-        String entryId = table.get(2).checkjstring();
-        String tagId = table.get(1).checkjstring();
+
+        String tagId = table.get(1).checkjstring();    // Exemplo: "c:sandstone/slabs"
+        String entryId = table.get(2).checkjstring();  // Exemplo: "minecraft:stone"
 
         String criteria = String.format("TAG_REMOVE_ENTRY:%s:%s", tagId, entryId);
+
         RuntimeDataRegistry.addTagRemovalCriteria(criteria);
 
         return LuaValue.NIL;
